@@ -13,40 +13,55 @@
 ## Installation
 
 1. Ensure you have the required dependencies installed:
-    - `ffmpeg`
-    - `curl`
-    - Python 3.x (with `requests` module installed)
+
+   - `ffmpeg`
+   - `curl`
+   - Python 3.x (with `requests` module installed)
 
 2. Clone the repository:
-    ```bash
-    git clone https://github.com/1999AZZAR/streamscape.git
-    cd streamscape
-    ```
+
+   ```bash
+   git clone https://github.com/1999AZZAR/streamscape.git
+   cd streamscape
+   ```
 
 3. Run the application:
-    ```bash
-    python radio.py
-    ```
+
+   ```bash
+   python radio.py
+   ```
 
 ## Usage
 
 ### Commands
 
-- **Play a station**: `play [index]` (e.g., `play 1`)
-- **Stop playback**: `stop`
-- **Resume last station**: Automatically prompted on startup.
+#### Navigation
+
+- **Navigate pages**: `</>`
+- **Next/Previous station**: `n/p`
+- **Jump to specific station**: `j`
 - **Search stations**: `/ [search term]`
+- **Clear search**: `c`
+
+#### Playlist Management
+
 - **Switch playlists**: `s`
 - **Add a station**: `a`
 - **Delete a station**: `d`
-- **Exit application**: `exit`
+
+#### Other Commands
+
+- **Show help menu**: `h`
+- **Exit application**: `e`
 
 ### Key Features
 
 #### Resume Last Played Station
+
 StreamScape saves your last played station in the configuration file and prompts you to resume playback on the next startup.
 
 #### Station Management
+
 Easily manage your stations using the intuitive menu. Add new stations, delete old ones, or switch playlists effortlessly.
 
 ## Configuration
