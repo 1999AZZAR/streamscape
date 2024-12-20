@@ -1,0 +1,9 @@
+name: Radio Paradize link: http://stream.radioparadise.com/mp3-128
+name: Radio Caroline link: https://stream.radiocaroline.net/;
+name: The Krush 95.9 link: https://25103.live.streamtheworld.com/KRSHFM.mp3
+name: CJ 105.7 link: https://cromwell-ice.streamguys1.com/WCJZFM-source
+name: The SoCal Sound link: https://stream.thesocalsound.org/1
+name: Celtic Music Radio link: https://streaming.broadcastradio.com:11135/celtic
+name: 1Mix Radio - Trance link: https://fr3.1mix.co.uk:8000/128
+name: YourClassical MPR link: https://cms.stream.publicradio.org/cms.mp3
+name: NPR News and Talk link: https://pd.npr.org/anon.npr-mp3/npr/news/newscast.mp3
