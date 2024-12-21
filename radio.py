@@ -5,20 +5,23 @@ import requests
 from colorama import Fore, Style, init
 from math import ceil
 import shutil
-from urllib.parse import urlparse
-import mimetypes
 import glob
 from typing import List, Tuple, Dict, Optional
 import threading
 import queue
 import time
+import sys
+from datetime import datetime
 
 init(autoreset=True)
 
-# Constants
+# Enhanced Constants
 DEFAULT_STATION_FILE = "list.txt"
-STATIONS_PER_PAGE = 10
+STATIONS_PER_PAGE = 15  # Increased for better visibility
 CONFIG_FILE = "radio_config.json"
+HISTORY_FILE = "play_history.json"
+FAVORITES_FILE = "favorites.txt"
+MAX_HISTORY_ENTRIES = 50
 
 # Basic dependencies - just ffmpeg and curl
 REQUIRED_PACKAGES = {
@@ -184,6 +187,7 @@ class RadioPlayer:
     def __init__(self):
         self.current_playlist = DEFAULT_STATION_FILE
         self.playlists: Dict[str, List[Tuple[str, str]]] = {}
+        self.favorites: List[Tuple[str, str]] = []
         self.current_station = 0
         self.is_playing = False
         self.last_played_station = None
@@ -191,9 +195,17 @@ class RadioPlayer:
         self.current_page = 1
         self.search_term = ""
         self.status_queue = queue.Queue()
-        self.current_station_name = None  # Add tracking for current station name
+        self.current_station_name = None
+        self.play_history = []
+        self.volume = 100
+        self.is_muted = False
+        self.view_mode = "all"  # Can be "all", "favorites", "history"
+
+        # Initialize everything
         self.load_config()
         self.load_all_playlists()
+        self.load_favorites()
+        self.load_history()
 
     def load_config(self):
         """Load configuration from file."""
@@ -300,67 +312,6 @@ class RadioPlayer:
         except Exception:
             return url
 
-    def play_station(self, station_idx: int):
-        """Play a radio station with improved status tracking."""
-        self.stop_station()
-
-        try:
-            stations = self.get_current_stations()
-            if not (0 <= station_idx < len(stations)):
-                print(f"{Fore.RED}Invalid station index")
-                return False
-
-            name, url = stations[station_idx]
-
-            # Show loading message
-            print(f"{Fore.YELLOW}Loading station: {name}...")
-
-            # Resolve the actual stream URL
-            stream_url = self.get_stream_url(url)
-
-            # Start playback with optimized settings
-            self.player_process = subprocess.Popen([
-                "ffplay",
-                "-nodisp",
-                "-hide_banner",
-                "-loglevel", "panic",
-                "-vn",
-                "-infbuf",
-                "-autoexit",
-                stream_url
-            ], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
-
-            # Update state only after successful process creation
-            self.is_playing = True
-            self.current_station = station_idx
-            self.current_station_name = name  # Store current station name
-            self.last_played_station = {
-                'playlist': self.current_playlist,
-                'station_idx': station_idx
-            }
-            self.save_config()
-
-            print(f"{Fore.GREEN}Now playing: {name}")
-            print(f"{Fore.CYAN}Press any key to access menu")
-            return True
-
-        except Exception as e:
-            print(f"{Fore.RED}Error playing station: {str(e)}")
-            self.is_playing = False
-            self.current_station_name = None
-            return False
-
-    def stop_station(self):
-        """Stop the currently playing station."""
-        if self.player_process:
-            try:
-                self.player_process.terminate()
-                self.player_process = None
-                self.is_playing = False
-                self.current_station_name = None
-            except Exception:
-                pass
-
     def check_playback_status(self) -> bool:
         """Check if the station is actually playing."""
         if self.player_process is None:
@@ -421,60 +372,252 @@ class RadioPlayer:
                 self.current_playlist = playlists[idx]
                 self.save_config()
 
+    def load_favorites(self):
+        """Load favorite stations from file."""
+        try:
+            if os.path.exists(FAVORITES_FILE):
+                self.favorites = self.load_stations(FAVORITES_FILE)
+        except Exception as e:
+            print(f"{Fore.YELLOW}Warning: Could not load favorites: {str(e)}")
+
+    def save_favorites(self):
+        """Save favorite stations to file."""
+        try:
+            self.save_stations(self.favorites, FAVORITES_FILE)
+        except Exception as e:
+            print(f"{Fore.YELLOW}Warning: Could not save favorites: {str(e)}")
+
+    def toggle_favorite(self, station: Tuple[str, str]):
+        """Add or remove station from favorites."""
+        if station in self.favorites:
+            self.favorites.remove(station)
+            print(f"{Fore.YELLOW}Removed from favorites: {station[0]}")
+        else:
+            self.favorites.append(station)
+            print(f"{Fore.GREEN}Added to favorites: {station[0]}")
+        self.save_favorites()
+
+    def load_history(self):
+        """Load play history from file."""
+        try:
+            if os.path.exists(HISTORY_FILE):
+                with open(HISTORY_FILE, 'r') as f:
+                    self.play_history = json.load(f)
+                    # Keep only the last MAX_HISTORY_ENTRIES
+                    self.play_history = self.play_history[-MAX_HISTORY_ENTRIES:]
+        except Exception as e:
+            print(f"{Fore.YELLOW}Warning: Could not load history: {str(e)}")
+
+    def save_history(self):
+        """Save play history to file."""
+        try:
+            with open(HISTORY_FILE, 'w') as f:
+                json.dump(self.play_history, f)
+        except Exception as e:
+            print(f"{Fore.YELLOW}Warning: Could not save history: {str(e)}")
+
+    def add_to_history(self, station_name: str, station_url: str):
+        """Add station to play history with timestamp."""
+        entry = {
+            'name': station_name,
+            'url': station_url,
+            'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+        }
+        self.play_history.append(entry)
+        if len(self.play_history) > MAX_HISTORY_ENTRIES:
+            self.play_history.pop(0)
+        self.save_history()
+
+    def adjust_volume(self, direction: str):
+        """Adjust playback volume."""
+        if direction == 'up' and self.volume < 100:
+            self.volume = min(100, self.volume + 10)
+        elif direction == 'down' and self.volume > 0:
+            self.volume = max(0, self.volume - 10)
+
+        if self.player_process:
+            # Use ffmpeg filter to adjust volume
+            self.restart_playback_with_volume()
+
+    def toggle_mute(self):
+        """Toggle mute state."""
+        self.is_muted = not self.is_muted
+        if self.player_process:
+            self.restart_playback_with_volume()
+
+    def restart_playback_with_volume(self):
+        """Restart playback with current volume settings."""
+        if self.current_station_name:
+            stations = self.get_current_stations()
+            station_info = next((s for s in stations if s[0] == self.current_station_name), None)
+            if station_info:
+                self.play_station(self.current_station, None, force_restart=True)
+
+    def stop_station(self):
+        """Stop the currently playing station."""
+        if self.player_process:
+            try:
+                self.player_process.terminate()
+                self.player_process = None
+                self.is_playing = False
+                self.current_station_name = None
+            except Exception:
+                pass
+
+    def play_station(self, station_idx: int, filtered_stations: List[Tuple[str, str]] = None, force_restart: bool = False):
+        """Enhanced play station with volume control and history."""
+        if not force_restart and self.is_playing and self.current_station == station_idx:
+            return True
+
+        self.stop_station()
+
+        try:
+            stations = filtered_stations if filtered_stations is not None else self.get_current_stations()
+
+            if not (0 <= station_idx < len(stations)):
+                print(f"{Fore.RED}Invalid station index")
+                return False
+
+            name, url = stations[station_idx]
+
+            print(f"{Fore.YELLOW}Loading station: {name}...")
+
+            # Find the index in the original station list if using filtered results
+            all_stations = self.get_current_stations()
+            original_idx = next((i for i, (n, _) in enumerate(all_stations) if n == name), station_idx)
+
+            stream_url = self.get_stream_url(url)
+
+            # Calculate effective volume
+            effective_volume = 0 if self.is_muted else self.volume
+
+            # Build ffplay command with volume control
+            cmd = [
+                "ffplay",
+                "-nodisp",
+                "-hide_banner",
+                "-loglevel", "panic",
+                "-vn",
+                "-af", f"volume={effective_volume/100}",
+                "-infbuf",
+                "-autoexit",
+                stream_url
+            ]
+
+            self.player_process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+
+            self.is_playing = True
+            self.current_station = original_idx
+            self.current_station_name = name
+            self.last_played_station = {
+                'playlist': self.current_playlist,
+                'station_idx': original_idx
+            }
+
+            # Add to history
+            self.add_to_history(name, url)
+
+            self.save_config()
+
+            # Show status with volume
+            volume_status = "🔇" if self.is_muted else f"🔊 {self.volume}%"
+            favorite_status = "⭐" if (name, url) in self.favorites else ""
+            print(f"{Fore.GREEN}Now playing: {name} {volume_status} {favorite_status}")
+            print(f"{Fore.CYAN}Press any key to access menu")
+            return True
+
+        except Exception as e:
+            print(f"{Fore.RED}Error playing station: {str(e)}")
+            self.is_playing = False
+            self.current_station_name = None
+            return False
+
     def display_menu(self) -> List[Tuple[str, str]]:
-        """Display the main menu with improved status display."""
+        """Enhanced menu display with favorites and history."""
         clear_screen()
-        stations = self.get_current_stations()
+
+        # Get appropriate station list based on view mode
+        if self.view_mode == "favorites":
+            stations = self.favorites
+        elif self.view_mode == "history":
+            # Convert history entries to station format
+            stations = [(entry['name'], entry['url']) for entry in reversed(self.play_history)]
+        else:
+            stations = self.get_current_stations()
+
         filtered_stations = filter_stations(stations, self.search_term)
         total_pages = ceil(len(filtered_stations) / STATIONS_PER_PAGE)
         start_idx = (self.current_page - 1) * STATIONS_PER_PAGE
         end_idx = start_idx + STATIONS_PER_PAGE
 
-        # Verify playback status before displaying
-        actual_playing = self.check_playback_status()
-        if not actual_playing:
-            self.is_playing = False
-            self.current_station_name = None
+        # Header with mode indicator
+        mode_text = {
+            "all": "All Stations",
+            "favorites": "Favorites",
+            "history": "Recently Played"
+        }[self.view_mode]
 
-        # Header
-        print(f"{Fore.CYAN}Radio Station Selector {Fore.YELLOW}[Page {self.current_page}/{total_pages}]")
+        print(f"{Fore.CYAN}{mode_text} {Fore.YELLOW}[Page {self.current_page}/{max(1, total_pages)}]")
         print(f"{Fore.CYAN}{'=' * 50}")
-        print(f"{Fore.GREEN}Current Playlist: {self.current_playlist}")
 
-        # Show currently playing station at the top
+        # Playlist info
+        if self.view_mode == "all":
+            print(f"{Fore.GREEN}Current Playlist: {self.current_playlist}")
+
+        # Playing status with volume
         if self.is_playing and self.current_station_name:
-            print(f"{Fore.GREEN}Now Playing: {Fore.WHITE}{self.current_station_name}")
+            volume_status = "🔇" if self.is_muted else f"🔊 {self.volume}%"
+            favorite_status = "⭐" if any(s[0] == self.current_station_name for s in self.favorites) else ""
+            print(f"{Fore.GREEN}Now Playing: {Fore.WHITE}{self.current_station_name} {volume_status} {favorite_status}")
             print(f"{Fore.CYAN}{'=' * 50}")
 
-        # Search results if any
+        # Search status
         if self.search_term:
             print(f"{Fore.YELLOW}Search: '{self.search_term}' ({len(filtered_stations)} results)")
 
-        # Station list with improved status display
+        # Station list
         print(f"\n{Fore.CYAN}Available Stations:")
         for i, (name, _) in enumerate(filtered_stations[start_idx:end_idx], start=start_idx + 1):
             station_idx = i - 1
-            if (station_idx == self.current_station and self.is_playing and
-                self.current_station_name == name):
-                print(f"{Fore.YELLOW}{i:3d}. {Fore.GREEN}{name[:40]} {Fore.GREEN}◄-- PLAYING")
-            else:
-                print(f"{Fore.YELLOW}{i:3d}. {Fore.WHITE}{name[:40]}")
+            is_playing = (station_idx == self.current_station and self.is_playing and
+                         self.current_station_name == name)
+            is_favorite = any(f[0] == name for f in self.favorites)
 
-        # Navigation and controls
+            # Build station display
+            status = f"{Fore.GREEN}◄-- PLAYING" if is_playing else ""
+            favorite = "⭐ " if is_favorite else ""
+            print(f"{Fore.YELLOW}{i:3d}. {favorite}{Fore.WHITE}{name[:40]} {status}")
+
+        # Enhanced controls display
+        print(f"\n{Fore.CYAN}Playback:")
+        print(f"{Fore.GREEN}  [+/-] - Volume Up/Down  {Fore.GREEN}[m] - Mute/Unmute")
+        print(f"{Fore.GREEN}  [k]   - Play/Pause      {Fore.GREEN}[f] - Toggle Favorite")
+
         print(f"\n{Fore.CYAN}Navigation:")
-        print(f"{Fore.GREEN}  [/] - Search    {Fore.GREEN}[</>] - Prev/Next page")
-        print(f"{Fore.GREEN}  [n] - Next      {Fore.GREEN}[p] - Previous station")
-        print(f"{Fore.GREEN}  [j] - Jump to   {Fore.GREEN}[c] - Clear search")
+        print(f"{Fore.GREEN}  [/] - Search   {Fore.GREEN}[</>] - Prev/Next page")
+        print(f"{Fore.GREEN}  [n] - Next     {Fore.GREEN}[p]   - Previous station")
+        print(f"{Fore.GREEN}  [j] - Jump to  {Fore.GREEN}[c]   - Clear search")
 
-        print(f"\n{Fore.CYAN}Management:")
-        print(f"{Fore.GREEN}  [a] - Add       {Fore.GREEN}[d] - Delete station")
+        print(f"\n{Fore.CYAN}Views:")
+        print(f"{Fore.GREEN}  [v] - Switch view (All/Favorites/History)")
         print(f"{Fore.GREEN}  [s] - Switch playlist")
-        print(f"{Fore.GREEN}  [h] - Help      {Fore.RED}[e] - Exit")
+
+        print(f"\n{Fore.CYAN}Other:")
+        print(f"{Fore.GREEN}  [a] - Add station   {Fore.GREEN}[d] - Delete station")
+        print(f"{Fore.GREEN}  [h] - Help          {Fore.RED}[e] - Exit")
 
         return filtered_stations
 
+    def switch_view_mode(self):
+        """Switch between different view modes."""
+        modes = ["all", "favorites", "history"]
+        current_index = modes.index(self.view_mode)
+        self.view_mode = modes[(current_index + 1) % len(modes)]
+        self.current_page = 1
+        self.search_term = ""
+
     def run(self):
-        """Main application loop with improved playback handling."""
+        """Main application loop with improved search handling."""
         if not check_dependencies():
             input("Press Enter to exit.")
             return
@@ -503,42 +646,69 @@ class RadioPlayer:
 
                 if choice == 'e':
                     print("Exiting the radio station selector. Goodbye!")
-                    self.stop_station()  # Use the class method instead of the global function
-                    return  # Use return instead of break to properly exit
+                    self.stop_station()
+                    return
 
                 if choice in ['n', 'p']:
                     if filtered_stations:
-                        if choice == 'n':
-                            self.current_station = (self.current_station + 1) % len(filtered_stations)
-                        else:
-                            self.current_station = (self.current_station - 1) % len(filtered_stations)
-                        self.play_station(self.current_station)
+                        # Find current station in filtered list
+                        current_name = next((name for name, _ in filtered_stations if name == self.current_station_name), None)
+                        current_filtered_idx = next((i for i, (name, _) in enumerate(filtered_stations) if name == current_name), 0)
 
+                        if choice == 'n':
+                            next_idx = (current_filtered_idx + 1) % len(filtered_stations)
+                        else:
+                            next_idx = (current_filtered_idx - 1) % len(filtered_stations)
+
+                        self.play_station(next_idx, filtered_stations)
+
+                elif choice == 'k':
+                    if self.is_playing:
+                        self.stop_station()
+                    else:
+                        self.resume_last_station()
+                elif choice in ['+', '-']:
+                    self.adjust_volume('up' if choice == '+' else 'down')
+                elif choice == 'm':
+                    self.toggle_mute()
                 elif choice == '>':
                     if self.current_page < total_pages:
                         self.current_page += 1
                 elif choice == '<':
                     if self.current_page > 1:
                         self.current_page -= 1
+                elif choice == 'f' and self.current_station_name:
+                    current_station = next((s for s in self.get_current_stations()
+                                         if s[0] == self.current_station_name), None)
+                    if current_station:
+                        self.toggle_favorite(current_station)
                 elif choice == '/':
                     self.search_term = input("Enter search term: ").strip()
                     self.current_page = 1
                 elif choice == 'c':
                     self.search_term = ""
                     self.current_page = 1
+                elif choice == 'v':
+                    self.switch_view_mode()
                 elif choice == 's':
                     self.switch_playlist()
                 elif choice == 'j':
                     try:
                         station_number = int(input(f"{Fore.CYAN}Enter station number: ")) - 1
                         if 0 <= station_number < len(filtered_stations):
-                            self.current_station = station_number
-                            self.play_station(self.current_station)
+                            self.play_station(station_number, filtered_stations)
                         else:
                             print(f"{Fore.RED}Invalid station number.")
                             input("Press Enter to continue...")
                     except ValueError:
                         print(f"{Fore.RED}Invalid input.")
+                        input("Press Enter to continue...")
+                elif choice.isdigit():
+                    station_number = int(choice) - 1
+                    if 0 <= station_number < len(filtered_stations):
+                        self.play_station(station_number, filtered_stations)
+                    else:
+                        print(f"{Fore.RED}Invalid station number.")
                         input("Press Enter to continue...")
                 elif choice == 'a':
                     name = input("Enter station name: ").strip()
