@@ -1,4 +1,3 @@
-name: Prambors FM / Jakarta link: http://masima.rastream.com/masima-pramborsjakarta?
 name: Gen FM link: http://streaming.sim-indonesia.com:8000/genfm
 name: Jak fm link: http://mahaka.rastream.com:80/jak.bb
 name: Radio Dangdut Indonesia link: http://202.147.199.99:8000/
@@ -150,7 +149,7 @@ name: Mora Jabar link: http://jabar.radiomora.com:9012
 name: Hitz FM 96.7 link: http://103.16.199.43:8900/
 name: Mandala FM Banyuwangi link: http://stream.suararadio.com:8000/964_MANDALA_FM_Mono
 name: Radio Tidar Sakti Fm Batu link: http://36.89.244.149:8000/
-name:  Rhema Radio / PM4FYI link: http://de.rhemaradio.com:8128/
+name: Rhema Radio / PM4FYI link: http://de.rhemaradio.com:8128/
 name: RadioNU link: http://semar.onlivestreaming.net:8787/stream
 name: Radio Maria Indonesia link: http://dreamsiteradiocp.com:8062/
 name: Radio Heartline Bali FM link: http://202.129.186.43:7028/
@@ -232,7 +231,7 @@ name: Dakta Radio link: http://175.103.56.9:9968/;stream.nsv&type=mp3
 name: Kharisma FM link: http://i.klikhost.com:8112/
 name: Radio Pertanian Wonocolo link: http://live.radiomatrixfm.com:8102/
 name: PURNAMA FM BLITAR link: http://i.klikhost.com:8796
-name: 	Radio Trangkil FM Temboro link: http://103.28.148.18:8228
+name: Radio Trangkil FM Temboro link: http://103.28.148.18:8228
 name: Solo Radio link: http://78.129.226.12:8754/
 name: Bobotoh FM link: http://74.208.111.60:8000/
 name: Sriwijaya Radio link: http://sriwijaya.onlivestreaming.net:9430/stream
@@ -268,11 +267,11 @@ name: Rasika Sragentina link: http://stream.suararadio.com:8000/rasikasragentina
 name: Pronews FM Padang link: http://live.indostreamserver.com:8018
 name: Yes FM 104.2 link: http://103.28.148.18:8866/
 name: Pantura FM link: http://i.klikhost.com:8814/
-name: Trijaya 87.6 FM Palembang  link: http://stream.suararadio.com:8000/trijayafm_stereo
+name: Trijaya 87.6 FM Palembang link: http://stream.suararadio.com:8000/trijayafm_stereo
 name: Sonora Lampung FM 96 link: http://stream.suararadio.com:8000/lampung_sonoralampung_stereo
 name: PILARADIO link: http://175.103.49.99:8000
 name: Gradiosta FM Purwokerto link: http://liveradio.masima.co.id:9000/
-name: RRI Pro 1 / Semarang  link: http://pvstreaming.rri.co.id:9016/web-rrisemarangpro1.mp3
+name: RRI Pro 1 / Semarang link: http://pvstreaming.rri.co.id:9016/web-rrisemarangpro1.mp3
 name: RRI Pro 2 / Padang link: http://pvstreaming.rri.co.id:9111/web-rripadangpro2.mp3
 name: Mujahidin FM 105.8 link: http://119.235.255.206:8154/
 name: Radio MQFM Jogja link: http://202.91.11.18:8000/
@@ -383,7 +382,7 @@ name: IBC FM 101.6 FM link: http://175.103.49.104:8000/
 name: Kharisma AM Bandung link: http://live2.indostreamserver.com:8006
 name: Pesona FM Padang link: http://curiosity.shoutca.st:6997/
 name: Mega FM Bali link: http://u.klikhost.com/singleplaylist.php?ip=i.klikhost.net&port=8196&format=PLS
-name:  RRI Pro 1 / Banjarmasin link: http://streaming.rri.co.id:9019/web-rribanjarmasinpro1.mp3
+name: RRI Pro 1 / Banjarmasin link: http://streaming.rri.co.id:9019/web-rribanjarmasinpro1.mp3
 name: Green Radio link: http://greenradio.onlivestreaming.net:8920/stream
 name: Smart FM Medan link: http://101.50.0.77:8000/medan.aac
 name: RRI Pro 1 / Denpasar link: http://pvstreaming.rri.co.id:9021/rridenpasarpro1.mp3
@@ -394,7 +393,7 @@ name: Brava Radio 103.8 link: http://cloudstreaming.mramedia.com:8004/live
 name: Metro FM Jambi 101.9 link: http://live.metrofmjambi.com:8170/
 name: Dreamers Radio link: http://i.klikhost.com:8500/
 name: Pas FM Radio Bisnis Semarang link: http://125.163.163.107:8000
-name:  RRI Pro 2 / Palembang link: http://streaming.rri.co.id:9013/rripalembangpro2.mp3
+name: RRI Pro 2 / Palembang link: http://streaming.rri.co.id:9013/rripalembangpro2.mp3
 name: Losta FM link: http://i.klikhost.net:8614
 name: FajriFM 993 link: http://coloid.fajrifm.com:9930/
 name: I Radio Medan 98.3 link: http://cloudstreaming.mramedia.com:8009/stream
@@ -447,7 +446,7 @@ name: Suara Kota 107.7 FM link: http://singo.airputih.org:8090/suarakota.ogg
 name: Zoo FM link: http://live.indostreamserver.com:9070/zoofm
 name: 95.1 Purnama Fm Blitar link: http://103.28.148.18:8796/;stream.nsv
 name: RRI Pro 1 / Pontianak link: http://180.250.80.114:9212/web-rripontianakpro1.mp3
-name: HITS Radio Bandung  link: http://hits.simayaradio.com:9996/;
+name: HITS Radio Bandung link: http://hits.simayaradio.com:9996/;
 name: Mora Kalbar link: http://103.28.148.18:8616
 name: Radio Cristy link: http://stream.suararadio.com:8000/cristyradio_makassar_stereo
 name: GCD FM Yogyakarta 98.6 link: http://jgj.jogjastreamers.com:8000/gcdstereo?s=639534222810025
@@ -470,7 +469,7 @@ name: RRI Pro 1 / Ende link: http://pvstreaming.rri.co.id:9223/web-rriendepro1.m
 name: Prima Radio Surabaya 103.8 link: http://stream.primaradio.co.id:9188/;
 name: RRI Pro 2 / Banjarmasin link: http://pvstreaming.rri.co.id:9019/rribanjarmasinpro2.mp3
 name: SUSIA FM 106.6 link: http://susiafm.com:8100/susia
-name: Yesika fm  link: http://119.82.244.54:8080/
+name: Yesika fm link: http://119.82.244.54:8080/
 name: Rama FM link: http://rama-fm.simaya.net.id:8800/
 name: Samhan Radio link: http://live.samhanradio.com:8090/
 name: Solagracia FM link: http://110.138.251.77:8000
@@ -499,7 +498,7 @@ name: CDBS FM Bali link: http://173.244.206.130:9450/aac
 name: Radio dFas FM Indramayu link: http://live.dfasfm.com:8032
 name: RADIO SMK SAHID link: http://radiosmksahid.onlivestreaming.net:9595/stream
 name: In_LOCALHOLIC Radio link: http://streaming.radionomy.com/in-LOCALHOLICCimahi
-name: Smooth 99.5 Jakarta  link: http://15693.live.streamtheworld.com/SMOOTH995AAC.aac?pname=StandardPlayerV4&pversion=4.18.0-002&tdsdk=js-2.9&banners=none&sbmid=d5abd0b0-72c9-4c33-8526-a2bf48549da6
+name: Smooth 99.5 Jakarta link: http://15693.live.streamtheworld.com/SMOOTH995AAC.aac?pname=StandardPlayerV4&pversion=4.18.0-002&tdsdk=js-2.9&banners=none&sbmid=d5abd0b0-72c9-4c33-8526-a2bf48549da6
 name: Studio 99 link: http://103.28.148.18:9164
 name: ONIX RADIO 88.7 link: http://199.167.134.163:7062/
 name: Delta FM Medan 105.8 FM link: http://masima.rastream.com/masima-deltamedan
@@ -508,7 +507,7 @@ name: RRI Pro 1 / Surakarta link: http://cast5.onlivestreaming.net:9000/pro1rris
 name: RPKD Denpasar link: http://rpkdfm.onlivestreaming.net:9260/stream
 name: SRIWIJAYA FM link: http://103.28.148.18:8104/
 name: Venus FM Makassar link: http://50.115.124.196:23060/
-name:  RRI Pro 2 / Surakarta link: http://cast1.onlivestreaming.net:9700/
+name: RRI Pro 2 / Surakarta link: http://cast1.onlivestreaming.net:9700/
 name: Sindo Radio 104.6 link: http://202.147.199.101:8000/;
 name: HOT 93.2 FM link: http://streaming.sportku.com:8000/dut
 name: Kharisma FM 105.9 link: http://i.klikhost.com:8112/
@@ -613,7 +612,7 @@ name: SLENDRO FM link: http://live4.rs3fm.com:8000/slendro
 name: Visi fm medan link: http://103.28.148.18:8178/
 name: Radio Untar 1098 link: http://202.129.186.43:7036/
 name: RRI Pro 4 / Yogyakarta link: http://103.28.15.50:9000/pro4.mp3
-name: Mayangkara  link: http://streaming.mayangkara.net:8000/mayangkara-aacmed?type=.mp3%2F%3Bstream.mp3&_=1
+name: Mayangkara link: http://streaming.mayangkara.net:8000/mayangkara-aacmed?type=.mp3%2F%3Bstream.mp3&_=1
 name: Rumaisho link: http://live.rumaysho.com:9984/
 name: UFM FM link: http://u-fm.simaya.net.id:8100
 name: Al/Ghifari link: http://i.klikhost.net:8058
@@ -632,7 +631,7 @@ name: Antares FM link: http://www.zamrudtechnology.com:8000/polaris_mono
 name: Media FM 90.1 link: http://streaming.radiomediafm.com:8400
 name: Pronews FM Padang 90.0 link: http://pronewsfm.indostreamserver.com:8018/stream
 name: Rakita FM link: http://119.235.250.189:8330
-name: RRI Pro 1 / Medan  link: http://pvstreaming.rri.co.id:9011/web-rrimedanpro1.mp3
+name: RRI Pro 1 / Medan link: http://pvstreaming.rri.co.id:9011/web-rrimedanpro1.mp3
 name: Radio Sukapura FM link: http://stream.suararadio.com:8000/tasik_sukapurafm_mp3
 name: Gaya FM 93.6 link: http://stream.suararadio.com:8000/bekasi_gayafm_stereo
 name: Fresh FM Tangerang link: http://103.28.148.18:8122
@@ -704,7 +703,7 @@ name: FBFM link: http://103.28.148.220:8006/
 name: 96.4 Bahtera Yudha FM link: http://streaming.bahterayudhafm.com:8050/;stream.nsv
 name: Aje Radio Jakarta link: http://u.klikhost.com:7854/
 name: Radio Online IslamOri link: http://radioonline.iniislam.net:9978
-name:  RRI Pro 2 / Singaraja link: http://live2.rrisingaraja.com:8106
+name: RRI Pro 2 / Singaraja link: http://live2.rrisingaraja.com:8106
 name: Elisa FM Salatiga link: http://203.29.26.205:8008
 name: Suara Giri FM Gresik link: http://streaming.girifm.com:8010/
 name: SCFM / Suara Celebes FM 90.9 link: http://live2.indostreamserver.com:8022/
@@ -719,7 +718,7 @@ name: Vampire Sound Radio link: http://www.vampiresound.com:8038/
 name: RRI Pro 1 / Singaraja link: http://live2.rrisingaraja.com:8108
 name: Kardopa FM link: http://66.225.237.48:8004
 name: K2FM link: http://s2.freeshoutcast.com:27488
-name: Kalimaya Bhaskara 102.1 FM  link: http://stream.suararadio.com:8000/Malang_KalimayaBhaskara_mono
+name: Kalimaya Bhaskara 102.1 FM link: http://stream.suararadio.com:8000/Malang_KalimayaBhaskara_mono
 name: Sahara Kendal 106.4 FM link: http://u.klikhost.net:7044
 name: Radio Galuh 89.5 FM Tasikmalaya link: http://stream.suararadio.com:8000/galuhfm_mono
 name: Radio Sonora FM link: http://202.148.14.92:8000/live
@@ -788,7 +787,7 @@ name: UMN Radio link: http://radio.umn.ac.id:8888/;
 name: Radio Vica Insani FM Purbalingga link: http://live.insanifm.com:8989/
 name: Goldenheart Radio 92.6 FM Manado link: http://ghfm.ddns.net:8000/goldenheart
 name: Vin Radio link: http://s4.vinhostmedia.com:8000/vinradio
-name: Studio East Radio Bandung  link: http://live.indostreamserver.com:8038/;
+name: Studio East Radio Bandung link: http://live.indostreamserver.com:8038/;
 name: Radio S/TRI FM Cianjur Selatan link: http://live.radiostrifm.com:8000/strifm
 name: Dengerin Musik Indonesia link: http://stream.dar.fm/83190
 name: Gen987fm link: http://streaming.sim-indonesia.com:8000/genfm
@@ -796,19 +795,19 @@ name: RRI Pro 1 / Surabaya link: http://125.164.72.113:8090
 name: RIS 103.2 FM PERBAUNGAN link: http://live.ris1032fm.com:8152
 name: 99.1 Most fm medan link: http://u.klikhost.net:7106
 name: Gaya FM link: http://175.103.49.121:8000
-name: Pas pati  link: http://pasfmpati.indostreaming.com:8886/;
+name: Pas pati link: http://pasfmpati.indostreaming.com:8886/;
 name: Radio Dakta / Bekasi link: http://175.103.56.9:9968/;stream.nsv&type=mp3
 name: PM5FAQ / Total FM link: http://103.28.148.18:8738/
 name: Aditya FM Pekanbaru link: http://103.28.148.18:8302/;
 name: Batara FM link: http://nusaradio.com/indonesia/batara-fm-95-5-fm-madiun/
 name: Dakwatul Mushtofa link: http://stream.radiodakwahmustofa.com:8724
-name: Hard Rock FM / Bandung  link: http://cloudstreaming.mramedia.com:8010/live
+name: Hard Rock FM / Bandung link: http://cloudstreaming.mramedia.com:8010/live
 name: SMP Negeri 1 Jakarta link: http://iradio.mediax9.com/tunein.php/smpn1jkt/playlist.ram
 name: Era FM UNJ link: http://radio.erafm-unj.com:8000/stream
 name: M Radio 102.7 link: http://mradiosamarinda.blogspot.in/2010/06/streaming-m-radio-1027-fm.html
 name: Freemagz / FMD Radio link: http://fire.wavestreamer.com:6389/stream/1/
 name: Radio Elnury link: http://119.235.255.206:8158
-name: Nurisfm Tangerang  link: http://103.28.148.18:8192/
+name: Nurisfm Tangerang link: http://103.28.148.18:8192/
 name: Be Radio 102.8 FM link: http://live.indostreamserver.com:8042/;stream.mp3
 name: Suara Giri FM Gresik link: http://streaming.girifm.com:8010/
 name: Andalas Radio link: http://i.klikhost.net:8902
@@ -831,7 +830,7 @@ name: RRI Pro 4 / Banjarmasin link: http://110.139.113.231:8000
 name: Grace Alone Radio link: http://u.klikhost.net:8000/gracealone
 name: RRC / Radio Republic Cabul link: http://174.142.97.228:8490
 name: NEW AJIB RADIO link: http://live.newajibradio.com:8204/
-name: El Victor 93.3  link: http://elvictorfm.onlivestreaming.net:8123/stream?1522166768349
+name: El Victor 93.3 link: http://elvictorfm.onlivestreaming.net:8123/stream?1522166768349
 name: Radio Online Tanjungpermai link: http://live1.sudutpermai.com:8000
 name: PISS FM CIAMIS link: http://stream.suararadio.com:8000/ciamis_pissfm_mono?1459863125668.mp3
 name: Rasuna FM link: http://live4.rs3fm.com:8000/rasunafm
@@ -845,14 +844,14 @@ name: Bragi FM link: http://s2.vinhostmedia.com:2020
 name: DanceSignal Radio link: http://128.199.243.21:8001/genre3
 name: Tangerang Radio link: http://radio.tangerangkab.ga:8000
 name: A Radio 96.1 FM link: http://175.103.58.73:8000/
-name: Dakwatul Musthofa Lumajang 88.10 FM  link: http://stream.radiodakwahmustofa.com:8724/;stream
+name: Dakwatul Musthofa Lumajang 88.10 FM link: http://stream.radiodakwahmustofa.com:8724/;stream
 name: RodjaTV link: http://audio.rodja.tv:1010/;stream.mp3?_=5
 name: Rain city link: http://live.serverstreaming.net:8888/livestream?type=.mp3
 name: Talitakum Radio link: http://streaming.talitakumradio.com:8100/;file.mp3
 name: 98 MAYA FM link: http://180.250.18.115:8000/bandung_mayafm_mono
 name: Radio qu link: http://live.radioquonline.com:8199/;
 name: Kompi Radio link: http://125.160.17.21:8014/
-name: PROSA FM  link: http://45.64.97.211:9954
+name: PROSA FM link: http://45.64.97.211:9954
 name: Thomson Bandung link: http://s3.vinhostmedia.com:9686
 name: Palupi FM Bangka Belitung link: http://radio.klikstream.net:1035/;
 name: Metro Mulawarman Samarinda 101.9FM link: http://110.139.150.167:8000
@@ -880,7 +879,7 @@ name: OZ Radio Banda Aceh link: http://103.29.212.166:9968/;stream/1
 name: Radio dFlamboyan link: http://flamboyan.onlivestreaming.net/tunein/flamboyan.ram
 name: RAS FM link: http://103.28.148.18:9006/;
 name: Andika link: http://198.24.155.194:1057/stream/1/
-name: RRI PRO2BDG  link: http://streaming.rri.co.id:9015/web-rribandungpro2.mp3
+name: RRI PRO2BDG link: http://streaming.rri.co.id:9015/web-rribandungpro2.mp3
 name: Club FM link: http://player.streamtheworld.com/_players/citadel/?sid=2943
 name: Ash/Shidiq FM / Purwakarta link: http://radio.mtafm.com:8980/
 name: Senaputra link: http://103.31.46.14:8000/
@@ -944,7 +943,7 @@ name: Radio pakpak bharat link: http://u.klikhost.com:7840/;nsv
 name: Cityguide 911 fm link: http://i.klikhost.com:8230/;
 name: Manggis jambi fm link: http://stream.suararadio.com:8000/manggisfm_mono
 name: JIZ link: http://usa.jogjastreamers.com:8000/jisstereo?s=64087256731239
-name: Rri manokwari  link: http://pvstreaming.rri.co.id:9024/web-rrimanokwaripro1.mp3
+name: Rri manokwari link: http://pvstreaming.rri.co.id:9024/web-rrimanokwaripro1.mp3
 name: Mersifm link: http://mersifm939.myradio.web.id:8888/mersifm939
 name: Kalaweit Radio 99,1 FM link: http://45.64.98.181:8012/live
 name: Radio Donna FM link: http://s3.vinhostmedia.com:9978/
@@ -963,7 +962,7 @@ name: Radio alfatah tranqil link: http://103.28.148.18:8228/;
 name: I/radio link: http://cloudstreaming.mramedia.com:8000/live
 name: Pasoepati link: http://live.citrafmradio.com:9494/stream?1539068892250
 name: Sarkub link: http://audio.aswajacenter.com:1112
-name: Soneta  link: http://live.suarasoneta.com:8016
+name: Soneta link: http://live.suarasoneta.com:8016
 name: RBT FM link: http://113.212.116.186:8899
 name: Full musik link: http://stream.denger.in:8000/mp3
 name: Kosmonita link: http://202.58.200.197:1055/live
@@ -981,12 +980,12 @@ name: Radio islam link: http://128.199.156.6/;
 name: Talitakum link: http://streaming.talitakumradio.com:8100
 name: Pas fm radio link: http://radio.mitra.net.id:8102/;
 name: WSM/AM link: http://stream01048.westreamradio.com:80/wsm-am-mp3
-name: X Channel 87.8 Fm  link: http://202.78.200.228:8788/
+name: X Channel 87.8 Fm link: http://202.78.200.228:8788/
 name: Madam link: http://119.235.255.206:8076/;stream/1
 name: MemoraFM link: http://i.klikhost.net:8600/;?type=.mp3%2F%3Bstream.mp3&_=1
 name: X Channel link: http://202.78.200.228:8103/stream
 name: Kotafm link: http://u.klikhost.net:8000/kotafmbojonegoro
-name: Ichthus  link: http://stream.suararadio.com:8000/ichthusfm_stereo
+name: Ichthus link: http://stream.suararadio.com:8000/ichthusfm_stereo
 name: Alhikam/Mlg link: http://183.91.83.45:8000
 name: Santika FM link: http://santikafm.id.myradio.web.id:8888/santikafm
 name: Paranti link: http://paranti.myradio.web.id:8778/paranti?1534932883950
@@ -1005,7 +1004,7 @@ name: My Radio link: mms://202.148.11.104/myradio
 name: Pilar Radio 102.1 FM link: http://i.klikhost.net:8072/;stream.nvs
 name: KVLT MAGZ / KVLT Radio link: http://kvltmagz.com:8000/listen
 name: NBS FM link: http://stream.suararadio.com:8000/sukabumi_nbsfm
-name: Radio casavafm  link: http://live3.rs3fm.com:8800/
+name: Radio casavafm link: http://live3.rs3fm.com:8800/
 name: Voice of hope link: http://www.u.klikhost.com:7302
 name: WSM/AM link: http://stream01048.westreamradio.com:80/wsm-am-mp3
 name: Mhendut fm link: http://streaming.mendhutfm.com:8790/stream
@@ -1027,7 +1026,7 @@ name: Bom fm link: http://103.28.148.18:8168/;
 name: Radio camajaya link: http://live.camajayafm.com:8220/;
 name: Ras link: http://103.28.148.18:9006/;
 name: Ub radio link: http://centova.ubradio.net:8300/stream?1533623893744
-name: Soneta  link: http://live.suarasoneta.com:8016
+name: Soneta link: http://live.suarasoneta.com:8016
 name: Radiotauhid link: http://syiartauhid.info:8008/
 name: Sebayu fm link: http://103.12.164.18:8000/;
 name: MSK link: http://78.129.224.19/stream.mp3?ipport=78.129.224.19_4164
@@ -1046,7 +1045,7 @@ name: Radio imam muslim link: http://alatsariy.onlivestreaming.net:10330/stream
 name: Bintangtenggara link: http://live.us.warningfm.net:8000/;?_=0.5077013375154275
 name: Ebsfm link: http://streaming.suzanafm.com:8100/;stream.nsv
 name: Fanesa5 link: http://103.28.148.18:8302/;?1534932766437
-name: Dreamers radio 2  link: http://103.227.252.90:8500/;stream.nsv
+name: Dreamers radio 2 link: http://103.227.252.90:8500/;stream.nsv
 name: DSK link: http://103.16.199.177:8300/;?type=.mp3%2F%3Bstream.mp3&_=1
 name: Jepang Radio link: http://live.japanesemusicid.com:8000/japanesemusic
 name: Impact radio link: https://k007.kiwi6.com/hotlink/bk1p8zzxwi/Bransle_du_Poictou.mp3
