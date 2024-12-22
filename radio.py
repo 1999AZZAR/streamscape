@@ -10,17 +10,17 @@ from typing import List, Tuple, Dict, Optional
 import threading
 import queue
 import time
-import sys
 from datetime import datetime
 
 init(autoreset=True)
 
 # Enhanced Constants
-DEFAULT_STATION_FILE = "list.txt"
-STATIONS_PER_PAGE = 15  # Increased for better visibility
+PLAYLIST_DIR = "./playlist/"
+DEFAULT_STATION_FILE = os.path.join(PLAYLIST_DIR, "list.m3u")
+STATIONS_PER_PAGE = 12
 CONFIG_FILE = "radio_config.json"
 HISTORY_FILE = "play_history.json"
-FAVORITES_FILE = "favorites.txt"
+FAVORITES_FILE = os.path.join(PLAYLIST_DIR, "favorites.m3u")
 MAX_HISTORY_ENTRIES = 50
 
 # Basic dependencies - just ffmpeg and curl
@@ -164,7 +164,13 @@ def display_help():
     """Display help information."""
     clear_screen()
     print(f"{Fore.CYAN}Radio Player Help")
-    print(f"{Fore.CYAN}{'=' * 40}")
+    print(f"{Fore.CYAN}{'=' * 50}")
+    print(f"{Fore.YELLOW}Playback:")
+    print(f"{Fore.WHITE}  +/- - Volume Up/Down ")
+    print(f"{Fore.WHITE}  m   - Mute/Unmute")
+    print(f"{Fore.WHITE}  k   - Play/Pause")
+    print(f"{Fore.WHITE}  f   - Toggle Favorite")
+
     print(f"{Fore.YELLOW}Navigation:")
     print(f"{Fore.WHITE}  </> - Navigate between pages")
     print(f"{Fore.WHITE}  n/p - Next/Previous station")
@@ -174,6 +180,7 @@ def display_help():
 
     print(f"\n{Fore.YELLOW}Playlist Management:")
     print(f"{Fore.WHITE}  s   - Switch between playlists")
+    print(f"{Fore.WHITE}  v   - Switch view (All/Favorites/History)")
     print(f"{Fore.WHITE}  a   - Add new station")
     print(f"{Fore.WHITE}  d   - Delete station")
 
@@ -201,11 +208,19 @@ class RadioPlayer:
         self.is_muted = False
         self.view_mode = "all"  # Can be "all", "favorites", "history"
 
+        # Ensure playlist directory exists
+        self.ensure_playlist_dir()
+
         # Initialize everything
         self.load_config()
         self.load_all_playlists()
         self.load_favorites()
         self.load_history()
+
+    def ensure_playlist_dir(self):
+        """Ensure the playlist directory exists."""
+        if not os.path.exists(PLAYLIST_DIR):
+            os.makedirs(PLAYLIST_DIR)
 
     def load_config(self):
         """Load configuration from file."""
@@ -231,40 +246,59 @@ class RadioPlayer:
             print(f"Warning: Could not save config: {str(e)}")
 
     def load_all_playlists(self):
-        """Load all .txt files as potential playlists."""
+        """Load all .m3u files as potential playlists."""
         self.playlists.clear()
-        for playlist_file in glob.glob("*.txt"):
+        for playlist_file in glob.glob(os.path.join(PLAYLIST_DIR, "*.m3u")):
             stations = self.load_stations(playlist_file)
             if stations:
                 self.playlists[playlist_file] = stations
 
     def load_stations(self, filename: str) -> List[Tuple[str, str]]:
-        """Load stations from a specific file."""
+        """Load stations from a specific .m3u file."""
         if not os.path.exists(filename):
             return []
         try:
             with open(filename, 'r') as file:
                 lines = file.read().strip().split("\n")
                 stations = []
+                current_name = ""
                 for line in lines:
-                    parts = line.split("link:")
-                    if len(parts) == 2:
-                        name = parts[0].replace("name:", "").strip()
-                        link = parts[1].strip()
-                        stations.append((name, link))
+                    line = line.strip()
+                    if line.startswith("#EXTINF"):
+                        # Extract the name from the #EXTINF line
+                        current_name = line.split(",", 1)[-1].strip()
+                    elif line and not line.startswith("#"):
+                        # The URL line follows the #EXTINF line
+                        stations.append((current_name, line))
                 return stations
         except Exception as e:
             print(f"{Fore.YELLOW}Warning: Could not load stations from {filename}: {str(e)}")
             return []
 
     def save_stations(self, stations: List[Tuple[str, str]], filename: str):
-        """Save stations to a specific file."""
+        """Save stations to a specific .m3u file."""
         try:
             with open(filename, 'w') as file:
+                file.write("#EXTM3U\n")
                 for name, link in stations:
-                    file.write(f"name: {name} link: {link}\n")
+                    file.write(f"#EXTINF:-1,{name}\n{link}\n")
         except Exception as e:
             print(f"{Fore.RED}Error saving stations to {filename}: {str(e)}")
+
+    def load_favorites(self):
+        """Load favorite stations from file."""
+        try:
+            if os.path.exists(FAVORITES_FILE):
+                self.favorites = self.load_stations(FAVORITES_FILE)
+        except Exception as e:
+            print(f"{Fore.YELLOW}Warning: Could not load favorites: {str(e)}")
+
+    def save_favorites(self):
+        """Save favorite stations to file."""
+        try:
+            self.save_stations(self.favorites, FAVORITES_FILE)
+        except Exception as e:
+            print(f"{Fore.YELLOW}Warning: Could not save favorites: {str(e)}")
 
     def get_current_stations(self) -> List[Tuple[str, str]]:
         """Get stations from current playlist."""
@@ -371,21 +405,6 @@ class RadioPlayer:
             if 0 <= idx < len(playlists):
                 self.current_playlist = playlists[idx]
                 self.save_config()
-
-    def load_favorites(self):
-        """Load favorite stations from file."""
-        try:
-            if os.path.exists(FAVORITES_FILE):
-                self.favorites = self.load_stations(FAVORITES_FILE)
-        except Exception as e:
-            print(f"{Fore.YELLOW}Warning: Could not load favorites: {str(e)}")
-
-    def save_favorites(self):
-        """Save favorite stations to file."""
-        try:
-            self.save_stations(self.favorites, FAVORITES_FILE)
-        except Exception as e:
-            print(f"{Fore.YELLOW}Warning: Could not save favorites: {str(e)}")
 
     def toggle_favorite(self, station: Tuple[str, str]):
         """Add or remove station from favorites."""

@@ -1,0 +1,41 @@
+#EXTM3U
+#RADIOBROWSERUUID:fff132f1-0b79-11e9-a80b-52543be04c81
+#EXTINF:1,Love 972 Radio
+http://playerservices.streamtheworld.com/api/livestream-redirect/LOVE972FMAAC.aac
+
+#RADIOBROWSERUUID:31710261-0b76-11e9-a80b-52543be04c81
+#EXTINF:1,YES 933 Radio
+http://playerservices.streamtheworld.com/api/livestream-redirect/YES933AAC.aac
+
+#RADIOBROWSERUUID:b1a05101-0b76-11e9-a80b-52543be04c81
+#EXTINF:1,Class 95 Radio
+http://playerservices.streamtheworld.com/api/livestream-redirect/CLASS95AAC.aac
+
+#RADIOBROWSERUUID:7036e1ed-0b7d-11e9-a80b-52543be04c81
+#EXTINF:1,Capital 958 Radio
+http://playerservices.streamtheworld.com/api/livestream-redirect/CAPITAL958FMAAC.aac
+
+#RADIOBROWSERUUID:a949b7f0-0b79-11e9-a80b-52543be04c81
+#EXTINF:1,Warna 942 Radio
+http://playerservices.streamtheworld.com/api/livestream-redirect/WARNA942FMAAC.aac
+
+#RADIOBROWSERUUID:06993d81-0b79-11e9-a80b-52543be04c81
+#EXTINF:1,UFM 100.3 Radio
+http://playerservices.streamtheworld.com/api/livestream-redirect/UFM_1003AAC.aac
+
+#RADIOBROWSERUUID:106c22a4-0b78-11e9-a80b-52543be04c81
+#EXTINF:1,Gold 905 Radio
+http://playerservices.streamtheworld.com/api/livestream-redirect/GOLD905AAC.aac
+
+#RADIOBROWSERUUID:8a9c4662-0b7c-11e9-a80b-52543be04c81
+#EXTINF:1,Jia 883 Radio
+http://playerservices.streamtheworld.com/api/livestream-redirect/883JIAAAC.aac
+
+#RADIOBROWSERUUID:1ada4b42-53e9-460f-8fa2-631c2c75801c
+#EXTINF:1,GOLD 905
+https://22403.live.streamtheworld.com/GOLD905_SC
+
+#RADIOBROWSERUUID:bfa448fd-2b74-4a60-a78d-7fea62cc0577
+#EXTINF:1,CNA 938 Live Singapore
+http://playerservices.streamtheworld.com/pls/938NOW_PREM.pls
+

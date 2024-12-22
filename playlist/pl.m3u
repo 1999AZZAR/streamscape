@@ -1,0 +1,41 @@
+#EXTM3U
+#RADIOBROWSERUUID:d1a54d2e-623e-4970-ab11-35f7b56c5ec3
+#EXTINF:1,Classic Vinyl HD
+https://icecast.walmradio.com:8443/classic
+
+#RADIOBROWSERUUID:6eff3484-4ab4-4d36-bf27-9172c5aac15c
+#EXTINF:1,Christmas Vinyl HD
+https://icecast.walmradio.com:8443/christmas
+
+#RADIOBROWSERUUID:962cc6df-0601-11e8-ae97-52543be04c81
+#EXTINF:1,Dance Wave!
+https://dancewave.online/dance.mp3
+
+#RADIOBROWSERUUID:ea8059be-d119-4de3-b27b-0d9bd6aedb17
+#EXTINF:1,Adroit Jazz Underground
+https://icecast.walmradio.com:8443/jazz
+
+#RADIOBROWSERUUID:313046e3-b203-4b9d-bc3e-393da7d97126
+#EXTINF:1,WALM - Old Time Radio
+https://icecast.walmradio.com:8443/otr
+
+#RADIOBROWSERUUID:348dfc58-ce8c-413b-b264-0384f816344b
+#EXTINF:1,WALM HD
+https://icecast.walmradio.com:8443/walm
+
+#RADIOBROWSERUUID:64bb1467-2585-4454-a96f-34cfbc864d41
+#EXTINF:1,WALM 2 HD
+https://icecast.walmradio.com:8443/walm2
+
+#RADIOBROWSERUUID:70647d8f-bf45-4034-a747-0561ecfa769e
+#EXTINF:1,WALM - Old Time Radio Opus
+https://icecast.walmradio.com:8443/otr_opus
+
+#RADIOBROWSERUUID:2ce23ee2-95c5-407d-9df8-54c3cdde2825
+#EXTINF:1,Adroit Jazz Underground HD Opus
+https://icecast.walmradio.com:8443/jazz_opus
+
+#RADIOBROWSERUUID:b96225b2-8536-4b9b-8add-03582fd2e6a2
+#EXTINF:1,WALM 2 HD Opus
+https://icecast.walmradio.com:8443/walm2_opus
+

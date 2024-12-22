@@ -1,0 +1,29 @@
+#EXTM3U
+
+#EXTINF:-1,Radio Paradize
+http://stream.radioparadise.com/mp3-128
+
+#EXTINF:-1,Radio Caroline
+https://stream.radiocaroline.net/;
+
+#EXTINF:-1,The Krush 95.9
+https://25103.live.streamtheworld.com/KRSHFM.mp3
+
+#EXTINF:-1,CJ 105.7
+https://cromwell-ice.streamguys1.com/WCJZFM-source
+
+#EXTINF:-1,The SoCal Sound
+https://stream.thesocalsound.org/1
+
+#EXTINF:-1,Celtic Music Radio
+https://streaming.broadcastradio.com:11135/celtic
+
+#EXTINF:-1,1Mix Radio - Trance
+https://fr3.1mix.co.uk:8000/128
+
+#EXTINF:-1,YourClassical MPR
+https://cms.stream.publicradio.org/cms.mp3
+
+#EXTINF:-1,NPR News and Talk
+https://pd.npr.org/anon.npr-mp3/npr/news/newscast.mp3
+
